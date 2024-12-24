@@ -1,0 +1,30 @@
+<h1>Editar Artículo</h1>
+
+<%= form_with model: @article, local: true do |form| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> impidieron guardar el artículo:</h2>
+      <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit "Actualizar Artículo" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver a la Lista', articles_path %>

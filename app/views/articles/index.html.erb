@@ -1,0 +1,25 @@
+<h1>Lista de Artículos</h1>
+
+<%= link_to 'Crear Nuevo Artículo', new_article_path %>
+
+<% if @articles.present? %>
+  <ul>
+    <% @articles.each do |article| %>
+    
+<li>
+  <strong><%= article.title %></strong>: <%= article.body %>
+  <%= link_to 'Ver', article_path(article) %>
+  <%= link_to 'Editar', edit_article_path(article) %>
+<%= form_with model: article, method: :delete, local: true do %>
+  <%= submit_tag 'Eliminar', data: { confirm: '¿Estás seguro?' } %>
+<% end %>
+
+</li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay artículos disponibles.</p>
+
+
+
+<% end %>
